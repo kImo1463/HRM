@@ -1,0 +1,91 @@
+<html>
+<head>
+    <title>human resource development</title>
+    <style>
+        table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even){background-color: #f2f2f2}
+
+th {
+    background-color: #4CAF50;
+    color: white;}
+
+         .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: sticky;
+            top: 0;
+            cursor: pointer;
+        }
+ 
+        .background {
+            background: black;
+            background-blend-mode: darken;
+            background-size: cover;
+        }
+ 
+        .nav-list {
+            width: 70%;
+            display: flex;
+            align-items: center;
+        }
+        .nav-list li {
+            list-style: none;
+            padding: 26px 30px;
+        }
+ 
+        .nav-list li a {
+            text-decoration: none;
+            color: white;
+        }
+ 
+        .nav-list li a:hover {
+            color: grey;
+        }
+    </style>
+</head>
+    <body>
+<nav class="navbar background">
+        <ul class="nav-list">
+            <div class="logo">
+                <img src= "">
+            </div>
+            <li><a href="http://localhost/mi/update.php">Edit</a></li>
+            <li><a href="http://localhost/mi/delet.php">delete</a></li>
+        </ul>
+    </nav>
+       </body>
+    </html>
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "trainee";
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+$que="SELECT id,firstname,lastname,reg_date from registered";
+$res=$conn->query($que);
+if($res->num_rows>0){
+    echo"<table><tr><th>ID</th><th>firstname</th><th>lastname</th><th>registered date</th></tr>";
+while($d=$res->fetch_assoc()){
+   //echo $d["id"]." ".$d["firstname"]." ".$d["lastname"]." ".$d["reg_date"];
+  // echo<br>;
+  echo"<tr><td>".$d["id"]."</td><td>".$d["firstname"]."</td><td>".$d["lastname"]."</td><td>".$d["reg_date"]."</td></tr>";
+}}
+
+echo"</table>";
+?>
